@@ -1,0 +1,33 @@
+<catalog>
+  <student>
+    <numara>12454353</numara>
+    <adsoyad>Ali Yılmaz</adsoyad>
+    <bolum>Bilgisayar Mühendisliği</bolum>
+    <sinif>3</sinif>
+  </student>
+  <student>
+    <numara>156456624</numara>
+    <adsoyad>Ayla Demir</adsoyad>
+    <bolum>Elektrik-Elektronik Mühendisliği</bolum>
+    <sinif>2</sinif>
+  </student>
+    <student>
+    <numara>4564124</numara>
+    <adsoyad>Osman Kara</adsoyad>
+    <bolum>Elektrik-Elektronik Mühendisliği</bolum>
+    <sinif>2</sinif>
+  </student>
+    <student>
+    <numara>12435235</numara>
+    <adsoyad>Engin Günaydın</adsoyad>
+    <bolum>Elektrik-Elektronik Mühendisliği</bolum>
+    <sinif>2</sinif>
+  </student>
+    <student>
+    <numara>15463424</numara>
+    <adsoyad>Serhat Demir</adsoyad>
+    <bolum>Endüstri Mühendisliği</bolum>
+    <sinif>2</sinif>
+  </student>
+  
+</catalog>

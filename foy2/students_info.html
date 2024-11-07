@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Bilgileri</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    <h1 style="color: blue;">Öğrenci Bilgileri</h1>
+
+    <table id="studentTable">
+        <tr>
+            <th>Numara</th>
+            <th>Ad Soyad</th>
+        </tr>
+    </table>
+
+    <div id="details">
+        Öğrenci Bilgileri.
+    </div>
+
+    <script>
+        function loadStudents() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "students.xml", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    parseXML(xhr);
+                }
+            };
+            xhr.send(null);
+        }
+
+        function parseXML(xhr) {
+            var xmlDoc = xhr.responseXML;
+            var students = xmlDoc.getElementsByTagName("student");
+            var table = document.getElementById("studentTable");
+
+            for (var i = 0; i < students.length; i++) {
+                var numara = students[i].getElementsByTagName("numara")[0].childNodes[0].nodeValue;
+                var adsoyad = students[i].getElementsByTagName("adsoyad")[0].childNodes[0].nodeValue;
+
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML = `<a href="#" onclick="showDetails(${i})">${numara}</a>`;
+                cell2.innerHTML = `<a href="#" onclick="showDetails(${i})">${adsoyad}</a>`;
+            }
+        }
+
+        function showDetails(index) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "students.xml", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var xmlDoc = xhr.responseXML;
+                    var students = xmlDoc.getElementsByTagName("student");
+                    var numara = students[index].getElementsByTagName("numara")[0].childNodes[0].nodeValue;
+                    var adsoyad = students[index].getElementsByTagName("adsoyad")[0].childNodes[0].nodeValue;
+                    var bolum = students[index].getElementsByTagName("bolum")[0].childNodes[0].nodeValue;
+                    var sinif = students[index].getElementsByTagName("sinif")[0].childNodes[0].nodeValue;
+
+                    document.getElementById("details").innerHTML = 
+                        `<span>Numara:</span> ${numara} <br> 
+                         <span>Ad Soyad:</span> ${adsoyad} <br> 
+                         <span>Bölüm:</span> ${bolum} <br> 
+                         <span>Sınıf:</span> ${sinif}`;
+                }
+            };
+            xhr.send(null);
+        }
+
+        // Sayfa yüklendiğinde öğrenci listesini yükle
+        window.onload = loadStudents;
+    </script>
+</body>
+</html>
